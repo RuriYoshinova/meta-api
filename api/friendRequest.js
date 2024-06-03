@@ -1,4 +1,4 @@
-module.exports = function friendRequest({ browser, utils, client, Language }) {
+module.exports = function({ browser, utils, client, Language }) {
     function getForm(userID, requestType) {
         var getType = {
             accept: { type: 'FriendingCometFriendRequestConfirmMutation', doc_id: '6368093549870401' },
@@ -55,7 +55,24 @@ module.exports = function friendRequest({ browser, utils, client, Language }) {
         });
         return formData;
     }
-    return async function(userID, type, callback) {
+
+    async function sendFriendRequest(userID, callback) {
+        return friendRequest(userID, 'send', callback);
+    }
+
+    async function deleteFriendRequest(userID, callback) {
+        return friendRequest(userID, 'delete', callback);
+    }
+
+    async function acceptFriendRequest(userID, callback) {
+        return friendRequest(userID, 'accept', callback);
+    }
+
+    async function cancelFriendRequest(userID, callback) {
+        return friendRequest(userID, 'cancel', callback);
+    }
+
+    async function friendRequest(userID, type, callback) {
         if (!callback || !Function.isFunction(callback)) callback = utils.makeCallback();
         if (!userID || !utils.includes(userID, 'String', 'Number')) return callback(Language('friendRequest', 'needUserID'));
         if (!type || !['accept', 'delete', 'send', 'cancel'].includes(type)) return callback(Language('friendRequest', 'needRequestType'));
@@ -63,4 +80,11 @@ module.exports = function friendRequest({ browser, utils, client, Language }) {
         var response = await browser.post('https://www.facebook.com/api/graphql/', form);
         return !response ? callback(Language('friendRequest', 'requestError', userID)) : response.error ? callback(response) : callback(null);
     }
+
+    return Object.assign(friendRequest, {
+        sendFriendRequest,
+        deleteFriendRequest,
+        acceptFriendRequest,
+        cancelFriendRequest
+    })
 }

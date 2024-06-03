@@ -26,15 +26,10 @@ module.exports = function ({ request, browser, utils, client, api, log, Language
     async function getSeqID(callback) {
         try {
             if (!callback || !Function.isFunction(callback)) callback = utils.makeCallback();
-            var response = await browser.post('https://www.facebook.com/api/graphqlbatch/', utils.getForm('3336396659757871', {
-                "limit": 1,
-                "before": null,
-                "tags": ["INBOX"],
-                "includeDeliveryReceipts": false,
-                "includeSeqID": true
-            }));
-            if (!Array.isArray(response)) throw new Error(Language('listen', 'notLoggedIn'));
-            client.irisSeqID = response[0].o0.data.viewer.message_threads.sync_sequence_id;
+            var { body } = await request.get('https://m.facebook.com');
+            const matchSEQ = body.match(/"?irisSeqID"?:\s*?"(.+?)"|"?iris_seq_id"?:"(.+?)"/);
+            if (!matchSEQ || !matchSEQ[1] || isNaN(matchSEQ[1])) throw new Error(Language('listen', 'notLoggedIn'));
+            client.irisSeqID = matchSEQ[1];
             return callback();
         } catch (error) {
             return callback(error);

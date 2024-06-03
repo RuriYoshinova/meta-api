@@ -1,6 +1,6 @@
 {
   "name": "@hoahenry/meta-api",
-  "version": "1.3.6-beta.7",
+  "version": "1.4.0-beta.1",
   "author": "HoaHenry",
   "description": "This is an unofficial API for Meta (Facebook - Facebook Messenger)",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "mqtt": "^4.3.7",
     "readline-sync": "^1.4.10",
     "request": "^2.88.2",
+    "semver": "^7.6.2",
     "websocket-stream": "^5.5.2"
   }
 }

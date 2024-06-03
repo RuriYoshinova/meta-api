@@ -4,9 +4,10 @@
         "notFoundRegion": "Region %1 không tồn tại trong ngôn ngữ %2.",
         "notFoundKey": "Không tìm thấy %1 trong region %2 của ngôn ngữ %3.",
         "unrecognizedConfigs": "Những tùy chọn không được chấp nhận trong setConfigs: %1",
+        "noNewUpdate": "Không có bản cập nhật mới cho meta-api.",
         "newestVersion": "Đã có bản cập nhật mới (%1) cho Meta-API",
-        "updated": "Cập nhật phiên bản mới hoàn tất.",
-        "autoUpdate": "Đã có bản cập nhật mới (%1) cho Meta-API. AutoUpdate được cho phép, đang cập nhật phiên bản mới...",
+        "updateFinished": "Cập nhật phiên bản mới hoàn tất.",
+        "update": "Đã có bản cập nhật mới (%1) cho Meta-API. Đang cập nhật phiên bản mới...",
         "loginWithCookies": "Đang đăng nhập bằng cookies...",
         "loginWithEmailAndPassword": "Đang đăng nhập bằng tài khoản và mật khẩu...",
         "inputEmail": "Nhập email hoặc ID tài khoản của bạn: ",
@@ -20,6 +21,9 @@
         "loggedinWith": "Đã đăng nhập bằng tài khoản có ID: %1",
         "mqttRegion": "Region của tài khoản: %1",
         "notFoundMqttRegion": "Đã xảy ra lỗi tìm thấy Region của tài khoản."
+    },
+    "addAPI": {
+
     },
     "addUsersToGroup": {
         "needThreadID": "addUsersToGroup | Vui lòng chuyển threadID vào đối số thứ hai.",
