@@ -47,10 +47,7 @@ module.exports = function({ client, utils, log }) {
 
     function saveCookies(response) {
         var cookies = response.headers['set-cookie'] || [];
-        for (let i of cookies) {
-            if (response.request.uri.href.includes('https://www.facebook.com')) jar.setCookie(i.replace(/domain=\.facebook\.com/, "domain=.messenger.com"), 'https://www.messenger.com');
-            jar.setCookie(i, response.request.uri.href);
-        }
+        for (let cookie of cookies) jar.setCookie(cookie, response.request.uri.href);
         return response;
     }
 

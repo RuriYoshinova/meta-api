@@ -32,10 +32,10 @@ module.exports = function({ client }) {
         return match && match.length > 1 ? match[1] : '';
     }
 
-    function readLine(question, nullAnswer) {
+    function readLine(question, clearLog = false) {
         let answer = reader.question(question, { encoding: 'utf-8' });
-        process.stdout.write("\u001b[0J\u001b[1J\u001b[2J\u001b[0;0H\u001b[0;0W");
-        return !nullAnswer && answer.length > 0 ? answer : readLine(question, nullAnswer);
+        if (clearLog) process.stdout.write("\u001b[0J\u001b[1J\u001b[2J\u001b[0;0H\u001b[0;0W");
+        return answer;
     }
 
     function makeParsable(html) {
